@@ -1,5 +1,5 @@
 import { Options } from 'selenium-webdriver/chrome'
-import { Browser, Builder } from 'selenium-webdriver'
+import { Builder } from 'selenium-webdriver'
 
 const run = async () => {
   const options = new Options()
@@ -8,7 +8,7 @@ const run = async () => {
   options.addArguments('--start-maximized')
   options.addArguments('--headless')
 
-  const driver = await new Builder().forBrowser(Browser.CHROME).setChromeOptions(options).build()
+  const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build()
   await driver.get('https://digikala.com')
 
   await driver.sleep(5000)
