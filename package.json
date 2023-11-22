@@ -1,0 +1,31 @@
+{
+  "name": "digikala-ganj",
+  "version": "0.0.1",
+  "description": "Scrap Digikala products to find the code for Ganj.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node .build/index.js"
+  },
+  "keywords": [
+    "digikala"
+  ],
+  "private": true,
+  "author": {
+    "name": "S. Mehran Abghari",
+    "email": "mehran.ab80@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.8",
+    "selenium-webdriver": "^4.15.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.201",
+    "@types/minimist": "^1.2.5",
+    "@types/selenium-webdriver": "^4.1.20",
+    "typescript": "^5.2.2"
+  }
+}
