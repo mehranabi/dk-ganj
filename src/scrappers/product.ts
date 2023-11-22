@@ -1,12 +1,10 @@
 import { getHeadlessDriver } from './driver'
 import { By } from 'selenium-webdriver'
 
-const LOAD_TIME: number = 3000 as const
+const LOAD_TIME: number = 2000 as const
 
 const extractPhotos = async (link: string): Promise<string[]> => {
   const images: string[] = []
-
-  console.log(link)
 
   try {
     const driver = await getHeadlessDriver()
@@ -18,9 +16,13 @@ const extractPhotos = async (link: string): Promise<string[]> => {
     console.log('found', containers.length, 'images')
 
     for (const container of containers) {
-      const image = await container.findElement(By.xpath('img'))
-      const source = await image.getAttribute('src')
-      images.push(source)
+      try {
+        const image = await container.findElement(By.xpath('img'))
+        const source = await image.getAttribute('src')
+        images.push(source)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     await driver.close()
