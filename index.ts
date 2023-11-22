@@ -56,16 +56,6 @@ const run = async (): Promise<void> => {
   await processFunc(PAGE + 7)
   await processFunc(PAGE + 8)
   await processFunc(PAGE + 9)
-  await processFunc(PAGE + 10)
-  await processFunc(PAGE + 11)
-  await processFunc(PAGE + 12)
-  await processFunc(PAGE + 13)
-  await processFunc(PAGE + 14)
-  await processFunc(PAGE + 15)
-  await processFunc(PAGE + 16)
-  await processFunc(PAGE + 17)
-  await processFunc(PAGE + 18)
-  await processFunc(PAGE + 19)
 }
 
 void run()
