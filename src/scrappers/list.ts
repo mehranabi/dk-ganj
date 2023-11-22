@@ -1,9 +1,9 @@
 import { getHeadlessDriver } from './driver'
 import { By } from 'selenium-webdriver'
 
-const LOAD_TIME: number = 3000 as const
+const LOAD_TIME: number = 5000 as const
 
-const extractProducts = async (category: string, page: number): Promise<string[]> => {
+export const extractProducts = async (category: string, page: number): Promise<string[]> => {
   const products: string[] = []
   const url = `https://www.digikala.com/search/${category}/?has_selling_stock=1&sort=29&page=${page}`
 
@@ -29,6 +29,3 @@ const extractProducts = async (category: string, page: number): Promise<string[]
 
   return products
 }
-
-
-export default { extractProducts }

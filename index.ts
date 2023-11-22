@@ -1,6 +1,8 @@
-import { ListScrapper, ProductScrapper } from './src/scrappers'
-import { OCRService, Ximilar } from './src/image'
 import * as minimist from 'minimist'
+import { exportKey } from './src/image/ocr'
+import { findTarget } from './src/image/similar'
+import { extractProducts } from './src/scrappers/list'
+import { extractPhotos } from './src/scrappers/product'
 
 interface Arguments {
   category: string
@@ -25,19 +27,19 @@ const OCR_TOKEN: string = args.ocr
 const TARGET: string = args.target
 
 const processFunc = async (currentPage: number): Promise<void> => {
-  const products = await ListScrapper.extractProducts(CATEGORY, currentPage)
+  const products = await extractProducts(CATEGORY, currentPage)
 
   for (const product of products) {
-    const photos = await ProductScrapper.extractPhotos(product)
+    const photos = await extractPhotos(product)
     if (photos.length === 0) continue
 
     let key = 'EMPTY'
     if (photos.length === 1) {
-      key = await OCRService.exportKey(photos[0], OCR_TOKEN)
+      key = await exportKey(photos[0], OCR_TOKEN)
     } else {
-      const target = await Ximilar.findTarget(photos, TARGET, XIMILAR_TOKEN)
+      const target = await findTarget(photos, TARGET, XIMILAR_TOKEN)
       if (target) {
-        key = await OCRService.exportKey(target, OCR_TOKEN)
+        key = await exportKey(target, OCR_TOKEN)
       }
     }
 

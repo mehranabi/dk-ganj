@@ -1,14 +1,14 @@
 import { getHeadlessDriver } from './driver'
 import { By } from 'selenium-webdriver'
 
-const LOAD_TIME: number = 2000 as const
+const LOAD_TIME: number = 5000 as const
 
-const extractPhotos = async (link: string): Promise<string[]> => {
+export const extractPhotos = async (link: string): Promise<string[]> => {
   const images: string[] = []
 
   try {
     const driver = await getHeadlessDriver()
-    await driver.get(`${link}#gallery`)
+    await driver.get(`${link}/#gallery`)
     await driver.sleep(LOAD_TIME)
 
     const containers = await driver.findElements(By.className('styles_ProductImagesModal__productImage__fzbFF'))
@@ -32,5 +32,3 @@ const extractPhotos = async (link: string): Promise<string[]> => {
 
   return images
 }
-
-export default { extractPhotos }

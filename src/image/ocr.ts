@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const exportKey = async (photo: string, token: string): Promise<string | null> => {
+export const exportKey = async (photo: string, token: string): Promise<string | null> => {
   try {
     const { data } = await axios.get('https://api.ocr.space/parse/imageurl', {
       params: {
@@ -20,5 +20,3 @@ const exportKey = async (photo: string, token: string): Promise<string | null> =
 
   return null
 }
-
-export default { exportKey }

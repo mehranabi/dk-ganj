@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { indexOf, min } from 'lodash'
 
-const findTarget = async (photos: string[], target: string, token: string): Promise<string | null> => {
+export const findTarget = async (photos: string[], target: string, token: string): Promise<string | null> => {
   const records: { _url: string }[] = photos.map((photo) => ({ _url: photo }))
 
   try {
@@ -27,5 +27,3 @@ const findTarget = async (photos: string[], target: string, token: string): Prom
 
   return null
 }
-
-export default { findTarget }
