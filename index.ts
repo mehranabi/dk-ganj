@@ -51,8 +51,13 @@ const processFunc = async (currentPage: number): Promise<void> => {
 
 const run = async (): Promise<void> => {
   for (let page = PAGE; page <= PAGE + PAGES; page + 2) {
-    await processFunc(page)
-    await processFunc(page + 1)
+    try {
+      await Promise.all([
+        processFunc(page),
+        processFunc(page + 1),
+      ])
+    } catch (_) {
+    }
   }
 }
 
