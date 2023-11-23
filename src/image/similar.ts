@@ -21,9 +21,7 @@ export const findTarget = async (photos: string[], target: string, token: string
       const index = indexOf(data.answer_distances, min(data.answer_distances))
       return data.answer_records[index]._url
     }
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (_) {}
 
   return null
 }

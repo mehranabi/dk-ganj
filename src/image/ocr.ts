@@ -14,9 +14,7 @@ export const exportKey = async (photo: string, token: string): Promise<string | 
 
     const text: string = data.ParsedResults?.[0]?.ParsedText ?? ''
     return text.replace('\n', '|')
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (_) {}
 
   return null
 }

@@ -13,8 +13,6 @@ export const extractPhotos = async (link: string): Promise<string[]> => {
 
     const containers = await driver.findElements(By.className('styles_ProductImagesModal__productImage__fzbFF'))
 
-    console.log('found', containers.length, 'images')
-
     for (const container of containers) {
       try {
         const image = await container.findElement(By.xpath('img'))
@@ -26,9 +24,7 @@ export const extractPhotos = async (link: string): Promise<string[]> => {
     }
 
     await driver.close()
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (_) {}
 
   return images
 }

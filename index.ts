@@ -7,6 +7,7 @@ import { extractPhotos } from './src/scrappers/product'
 interface Arguments {
   category: string
   page: number
+  pages: number
   ximilar: string
   ocr: string
   target: string
@@ -25,6 +26,7 @@ const PAGE: number = args.page
 const XIMILAR_TOKEN: string = args.ximilar
 const OCR_TOKEN: string = args.ocr
 const TARGET: string = args.target
+const PAGES: number = args.pages ?? 10
 
 const processFunc = async (currentPage: number): Promise<void> => {
   const products = await extractProducts(CATEGORY, currentPage)
@@ -43,16 +45,15 @@ const processFunc = async (currentPage: number): Promise<void> => {
       }
     }
 
-    console.log('KEY: ', key)
+    console.log(`KEY: [${key}]`)
   }
 }
 
 const run = async (): Promise<void> => {
-  await processFunc(PAGE)
-  await processFunc(PAGE + 1)
-  await processFunc(PAGE + 2)
-  await processFunc(PAGE + 3)
-  await processFunc(PAGE + 4)
+  for (let page = PAGE; page <= PAGE + PAGES; page + 2) {
+    await processFunc(page)
+    await processFunc(page + 1)
+  }
 }
 
 void run()

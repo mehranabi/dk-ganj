@@ -14,8 +14,6 @@ export const extractProducts = async (category: string, page: number): Promise<s
 
     const containers = await driver.findElements(By.className('product-list_ProductList__item__LiiNI'))
 
-    console.log('found', containers.length, 'products')
-
     for (const container of containers) {
       const product = await container.findElement(By.xpath('a'))
       const link = await product.getAttribute('href')
@@ -23,9 +21,7 @@ export const extractProducts = async (category: string, page: number): Promise<s
     }
 
     await driver.close()
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (_) {}
 
   return products
 }
